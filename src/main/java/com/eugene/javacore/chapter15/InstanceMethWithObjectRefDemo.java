@@ -1,6 +1,6 @@
 package com.eugene.javacore.chapter15;
 
-import com.sun.xml.internal.txw2.annotation.XmlNamespace;
+
 
 interface MyFunc8<T> {
     boolean func(T v1, T v2);

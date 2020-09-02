@@ -7,7 +7,7 @@ public class InetAdressTest {
     public static void main(String[] args) throws UnknownHostException {
         InetAddress address = InetAddress.getLocalHost();
         System.out.println(address);
-        address = InetAddress.getByName("www.HerbSchildt.com");
+        address = InetAddress.getByName("www.yandex.ru");
         System.out.println(address);
         InetAddress SW[] = InetAddress.getAllByName("www.nba.com");
         for ( int i = 0; i<SW.length;i++)

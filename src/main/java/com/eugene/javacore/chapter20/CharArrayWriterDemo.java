@@ -1,6 +1,6 @@
 package com.eugene.javacore.chapter20;
 
-import sun.awt.windows.WBufferStrategy;
+
 
 import java.io.CharArrayReader;
 import java.io.CharArrayWriter;
