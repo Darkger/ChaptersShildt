@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 public class RegionRepository {
-    private Region region;
     private HashMap<String, String> mapReg = new HashMap<>();
     private Path regionFile = Paths.get("C:\\javaFiles\\region.txt");
     private int maxId = 0;
@@ -31,16 +30,14 @@ public class RegionRepository {
         }
     }
 
-    public RegionRepository(Region region) {
-        this.region = region;
-    }
+
 
     //-----Метод save сохраняет id и Регион в файл,
     //-----в случае если id не указан, то id генерируется, и присваивается в region.id
     //-----в случае если  id совпадает с другим регионом в файле, то id генерируется и присваивается в region.id
     //-----в случае если уникалный id и регион, то они записываются в файл
     //-----в случае если уникальный регион, но id совпадает с другим id в файле, то id генерируется и присваивается в region.id
-    public void save() {
+    public void save(Region region) {
         mapReg = regionMap();
         int flag = 0;
         int key = 0;
