@@ -2,7 +2,7 @@ package com.eugene.javacore.practic;
 
 public class Region {
     private  String id;
-    private String CharRegName;
+    private String charRegName;
 
     public String getId() {
         return id;
@@ -13,10 +13,10 @@ public class Region {
     }
 
     public String getCharRegName() {
-        return CharRegName;
+        return charRegName;
     }
 
     public void setCharRegName(String charRegName) {
-        CharRegName = charRegName;
+        this.charRegName = charRegName;
     }
 }
