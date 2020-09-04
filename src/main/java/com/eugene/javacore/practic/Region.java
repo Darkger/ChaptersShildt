@@ -1,8 +1,17 @@
 package com.eugene.javacore.practic;
 
 public class Region {
-    private  String id;
+    private String id;
     private String charRegName;
+
+    public Region() {
+
+    }
+
+    public Region(String id, String charRegName) {
+        this.id = id;
+        this.charRegName = charRegName;
+    }
 
     public String getId() {
         return id;
