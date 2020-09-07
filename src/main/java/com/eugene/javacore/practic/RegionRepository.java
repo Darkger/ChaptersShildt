@@ -29,13 +29,15 @@ public class RegionRepository {
                 for (int i = 0; i < listId.size(); i++) {
                     try {
                         Files.writeString(regionFile, listId.get(i) + "," + listRegionCharName.get(i) + "\n", StandardOpenOption.APPEND);
-                        System.out.println("В файл записаны: id = " + listId.get(i) + " Регион = " + listRegionCharName.get(i));
+                     //   System.out.println("В файл записаны: id = " + listId.get(i) + " Регион = " + listRegionCharName.get(i));
                     } catch (IOException e) {
                         System.out.println("ошибка записи в файл3");
                     }
                 }
             }
+            return region;
         }
+        System.out.println("файл пуст");
         return null;
     }
 
@@ -49,7 +51,7 @@ public class RegionRepository {
                 }
             }
         }
-        System.out.println("id не найден");
+        //System.out.println("id не найден");
         return null;
     }
 
@@ -64,11 +66,11 @@ public class RegionRepository {
             }
             return listRegionObj;
         }
-        System.out.println("Файл не содержит данных");
+        //System.out.println("Файл не содержит данных");
         return null;
     }
 
-    
+
     void deleteById(Long id) throws IOException {
         List<String> listReg = Files.readAllLines(regionFile);
         ArrayList<Long> listId = new ArrayList<>();
@@ -98,7 +100,7 @@ public class RegionRepository {
     }
 
 
-    public void save(Region region) throws IOException {
+    public Region save(Region region) throws IOException {
         int flag = 0;
         List<String> listReg = Files.readAllLines(regionFile);
         ArrayList<String> listId = new ArrayList<>();
@@ -141,11 +143,13 @@ public class RegionRepository {
         if (flag != 1) {
             try {
                 Files.writeString(regionFile, region.getId() + "," + region.getCharRegName() + "\n", StandardOpenOption.APPEND);
-                System.out.println("В файл записаны: id = " + region.getId() + " Регион = " + region.getCharRegName());
+               // System.out.println("В файл записаны: id = " + region.getId() + " Регион = " + region.getCharRegName());
+                return region;
             } catch (IOException e) {
                 System.out.println("ошибка записи в файл3");
             }
         }
+        return null;
     }
 
 }
