@@ -144,12 +144,12 @@ public class RegionRepository {
             try {
                 Files.writeString(regionFile, region.getId() + "," + region.getCharRegName() + "\n", StandardOpenOption.APPEND);
                // System.out.println("В файл записаны: id = " + region.getId() + " Регион = " + region.getCharRegName());
-                return region;
+
             } catch (IOException e) {
                 System.out.println("ошибка записи в файл3");
             }
         }
-        return null;
+        return region;
     }
 
 }
