@@ -1,4 +1,4 @@
-package com.eugene.javacore.practic;
+package com.eugene.javacore.practic.Region;
 
 public class Region {
     private String id;

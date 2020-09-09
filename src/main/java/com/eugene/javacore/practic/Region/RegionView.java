@@ -1,4 +1,4 @@
-package com.eugene.javacore.practic;
+package com.eugene.javacore.practic.Region;
 
 import java.io.BufferedReader;
 import java.io.IOException;

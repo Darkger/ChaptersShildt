@@ -1,47 +1,54 @@
-package com.eugene.javacore.practic;
+package com.eugene.javacore.practic.Region;
 
 import java.io.*;
 import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RegionRepository {
+public class RegionRepository implements RegionReposutoryImpl {
     private Path regionFile = Paths.get("C:\\javaFiles\\region.txt");
 
-    public Region update(Region region) throws IOException {
-        List<String> listRegFile = Files.readAllLines(regionFile);
-        List<String> listId = new ArrayList<>();
-        List<String> listRegionCharName = new ArrayList<>();
-        if (!listRegFile.isEmpty()) {
-            for (String str : listRegFile) {
-                String strArray[] = str.split(",");
-                listId.add(strArray[0]);
-                listRegionCharName.add(strArray[1]);
-            }
-            if (listId.contains(region.getId())) {
-                if (listRegionCharName.contains(region.getCharRegName())) {
-                    System.out.println("введеный Регион уже есть в файле");
-                    return null;
+    public Region update(Region region) {
+        try {
+            List<String> listRegFile = Files.readAllLines(regionFile);
+
+            List<String> listId = new ArrayList<>();
+            List<String> listRegionCharName = new ArrayList<>();
+            if (!listRegFile.isEmpty()) {
+                for (String str : listRegFile) {
+                    String strArray[] = str.split(",");
+                    listId.add(strArray[0]);
+                    listRegionCharName.add(strArray[1]);
                 }
-                listRegionCharName.add(listId.indexOf(region.getId()), region.getCharRegName());
-                Files.delete(regionFile);
-                Files.createFile(regionFile);
-                for (int i = 0; i < listId.size(); i++) {
-                    try {
-                        Files.writeString(regionFile, listId.get(i) + "," + listRegionCharName.get(i) + "\n", StandardOpenOption.APPEND);
-                     //   System.out.println("В файл записаны: id = " + listId.get(i) + " Регион = " + listRegionCharName.get(i));
-                    } catch (IOException e) {
-                        System.out.println("ошибка записи в файл3");
+                if (listId.contains(region.getId())) {
+                    if (listRegionCharName.contains(region.getCharRegName())) {
+                        System.out.println("введеный Регион уже есть в файле");
+                        return null;
+                    }
+                    listRegionCharName.add(listId.indexOf(region.getId()), region.getCharRegName());
+                    Files.delete(regionFile);
+                    Files.createFile(regionFile);
+                    for (int i = 0; i < listId.size(); i++) {
+                        try {
+                            Files.writeString(regionFile, listId.get(i) + "," + listRegionCharName.get(i) + "\n", StandardOpenOption.APPEND);
+                            //   System.out.println("В файл записаны: id = " + listId.get(i) + " Регион = " + listRegionCharName.get(i));
+                        } catch (IOException e) {
+                            System.out.println("ошибка записи в файл3");
+                        }
                     }
                 }
+                return region;
             }
-            return region;
+            System.out.println("файл пуст");
+            return null;
+        } catch (IOException e) {
+            System.out.println(e);
+            return null;
         }
-        System.out.println("файл пуст");
-        return null;
     }
 
-    public Region getById(Long id) throws IOException {
+    public Region getById(Long id)  {
+        try{
         List<String> listRegFile = Files.readAllLines(regionFile);
         if (!listRegFile.isEmpty()) {
             for (String str : listRegFile) {
@@ -53,9 +60,14 @@ public class RegionRepository {
         }
         //System.out.println("id не найден");
         return null;
+        } catch (IOException e) {
+            System.out.println(e);
+            return null;
+        }
     }
 
-    public List<Region> getAll() throws IOException {
+    public List<Region> getAll()   {
+        try{
         List<String> listRegFile = Files.readAllLines(regionFile);
         List<Region> listRegionObj = new ArrayList<Region>();
 
@@ -68,10 +80,15 @@ public class RegionRepository {
         }
         //System.out.println("Файл не содержит данных");
         return null;
+        } catch (IOException e) {
+            System.out.println(e);
+            return null;
+        }
     }
 
 
-    void deleteById(Long id) throws IOException {
+   public  void deleteById(Long id)   {
+        try{
         List<String> listReg = Files.readAllLines(regionFile);
         ArrayList<Long> listId = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -97,11 +114,16 @@ public class RegionRepository {
         } else {
             System.out.println("id не найден");
         }
+        } catch (IOException e) {
+            System.out.println(e);
+
+        }
     }
 
 
-    public Region save(Region region) throws IOException {
+    public Region save(Region region)   {
         int flag = 0;
+        try{
         List<String> listReg = Files.readAllLines(regionFile);
         ArrayList<String> listId = new ArrayList<>();
         int maxValue = 0;
@@ -143,14 +165,19 @@ public class RegionRepository {
         if (flag != 1) {
             try {
                 Files.writeString(regionFile, region.getId() + "," + region.getCharRegName() + "\n", StandardOpenOption.APPEND);
-               // System.out.println("В файл записаны: id = " + region.getId() + " Регион = " + region.getCharRegName());
+                // System.out.println("В файл записаны: id = " + region.getId() + " Регион = " + region.getCharRegName());
 
             } catch (IOException e) {
                 System.out.println("ошибка записи в файл3");
             }
         }
         return region;
+        } catch (IOException e) {
+            System.out.println(e);
+            return null;
+        }
     }
+
 
 }
 

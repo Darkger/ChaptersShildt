@@ -1,6 +1,5 @@
-package com.eugene.javacore.practic;
+package com.eugene.javacore.practic.Region;
 
-import javax.swing.text.View;
 import java.io.IOException;
 import java.util.List;
 
