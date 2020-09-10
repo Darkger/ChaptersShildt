@@ -1,4 +1,7 @@
-package com.eugene.javacore.practic.Region;
+package com.eugene.javacore.practic.VIEWS;
+
+import com.eugene.javacore.practic.CONTROLLERS.RegionController;
+import com.eugene.javacore.practic.ESSENCES.Region;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,4 +1,7 @@
-package com.eugene.javacore.practic.Region;
+package com.eugene.javacore.practic.REPOSITORYS;
+
+import com.eugene.javacore.practic.ESSENCES.Region;
+import com.eugene.javacore.practic.REPOSIMPLS.RegionReposutoryImpl;
 
 import java.io.*;
 import java.nio.file.*;
@@ -158,7 +161,7 @@ public class RegionRepository implements RegionReposutoryImpl {
                     }
                     if (flag != 1) {
                         if (listId.contains(region.getId()))
-                            region.setId(String.valueOf(maxValue++));
+                            region.setId(String.valueOf(++maxValue));
                     }
                 }
         }

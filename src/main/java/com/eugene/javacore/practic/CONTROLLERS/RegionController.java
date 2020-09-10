@@ -1,4 +1,7 @@
-package com.eugene.javacore.practic.Region;
+package com.eugene.javacore.practic.CONTROLLERS;
+
+import com.eugene.javacore.practic.ESSENCES.Region;
+import com.eugene.javacore.practic.REPOSITORYS.RegionRepository;
 
 import java.io.IOException;
 import java.util.List;

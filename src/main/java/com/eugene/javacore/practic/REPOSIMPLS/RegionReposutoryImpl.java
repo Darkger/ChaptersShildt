@@ -1,5 +1,6 @@
-package com.eugene.javacore.practic.Region;
+package com.eugene.javacore.practic.REPOSIMPLS;
 
+import com.eugene.javacore.practic.ESSENCES.Region;
 import com.eugene.javacore.practic.Genericrepository;
 
 import java.util.List;
