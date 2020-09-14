@@ -10,13 +10,13 @@ import java.util.List;
 public class PostController {
     PostRepository regionRepository = new PostRepository();
 
-    public Post save(Post region) throws IOException {
+    public Post save(Post post) throws IOException {
 
-        region = regionRepository.save(region);
-        if (region == null)
+        post = regionRepository.save(post);
+        if (post == null)
             return null;
         else
-            return regionRepository.save(region);
+            return regionRepository.save(post);
     }
 
     public void deleteById(String str) throws IOException {
@@ -24,21 +24,21 @@ public class PostController {
         regionRepository.deleteById(Long.parseLong(str));
     }
 
-    public Post getRegionById(String str) throws IOException {
+    public Post getPostById(String str) throws IOException {
 
-        Post region = regionRepository.getById(Long.parseLong(str));
-        if (region == null)
+        Post post = regionRepository.getById(Long.parseLong(str));
+        if (post == null)
             return null;
         else {
-            return region;
+            return post;
         }
     }
 
-    public Post Update(Post region) throws IOException {
+    public Post Update(Post post) throws IOException {
 
-        region = regionRepository.update(region);
-        if (region != null) {
-            return region;
+        post = regionRepository.update(post);
+        if (post != null) {
+            return post;
         } else return null;
 
 
@@ -46,11 +46,11 @@ public class PostController {
 
     public List<Post> getAll() throws IOException {
 
-        List<Post> regionList = regionRepository.getAll();
-        if (regionList==null)
+        List<Post> postList = regionRepository.getAll();
+        if (postList==null)
             return null;
         else
-            return regionList;
+            return postList;
     }
 
 }

@@ -49,7 +49,7 @@ public class PostView {
 
     public void viewGetRegionById(String str) throws IOException {
 
-        Post post = regionController.getRegionById(str);
+        Post post = regionController.getPostById(str);
         if (post != null)
             System.out.println("Идентификатор id=" + post.getId() + "принадлежит посту '" + post.getContent());
         else System.out.println("Пост не найден!");

@@ -136,7 +136,8 @@ public class RegionRepository implements RegionReposutoryImpl {
             if (maxValue < Integer.parseInt(strArray[0])) {
                 maxValue = Integer.parseInt(strArray[0]);
             }
-        }
+        }if(region.getId()==null)
+            region.setId("");
         switch (region.getId()) {
             case "": {
                 for (String str : listReg) {

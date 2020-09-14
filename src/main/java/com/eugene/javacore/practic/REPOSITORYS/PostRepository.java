@@ -162,8 +162,7 @@ public class PostRepository implements PostRepositoryImpl {
         try{
             List<String> listReg = Files.readAllLines(postsFile);
             ArrayList<Long> listId = new ArrayList<>();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-            String strPovtorVvod = "notnull";
+
             for (String str : listReg) {
                 String strArray[] = str.split(",");
                 listId.add(Long.parseLong(strArray[0]));

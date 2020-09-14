@@ -13,6 +13,11 @@ public class Region {
         this.charRegName = charRegName;
     }
 
+    public Region(String userRegion) {
+        this.charRegName=userRegion;
+    }
+
+
     public String getId() {
         return id;
     }
