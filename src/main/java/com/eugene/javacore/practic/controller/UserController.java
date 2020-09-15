@@ -1,7 +1,7 @@
 package com.eugene.javacore.practic.controller;
 
 import com.eugene.javacore.practic.model.User;
-import com.eugene.javacore.practic.repositoryIO.UserRepositoryImpl;
+import com.eugene.javacore.practic.repository.repositoryIO.UserRepositoryImpl;
 
 import java.io.IOException;
 import java.util.List;

@@ -1,7 +1,7 @@
 package com.eugene.javacore.practic.controller;
 
 import com.eugene.javacore.practic.model.Region;
-import com.eugene.javacore.practic.repositoryIO.RegionRepositoryImpl;
+import com.eugene.javacore.practic.repository.repositoryIO.RegionRepositoryImpl;
 
 import java.io.IOException;
 import java.util.List;

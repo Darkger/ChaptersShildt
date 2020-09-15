@@ -2,7 +2,7 @@ package com.eugene.javacore.practic.controller;
 
 
 import com.eugene.javacore.practic.model.Post;
-import com.eugene.javacore.practic.repositoryIO.PostRepositoryImpl;
+import com.eugene.javacore.practic.repository.repositoryIO.PostRepositoryImpl;
 
 import java.io.IOException;
 import java.util.List;

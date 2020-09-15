@@ -1,4 +1,4 @@
-package com.eugene.javacore.practic.repositoryIO;
+package com.eugene.javacore.practic.repository.repositoryIO;
 
 import java.util.ArrayList;
 import java.util.List;
