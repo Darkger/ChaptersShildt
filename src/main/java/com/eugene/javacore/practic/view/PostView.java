@@ -1,8 +1,8 @@
-package com.eugene.javacore.practic.VIEWS;
+package com.eugene.javacore.practic.view;
 
 
-import com.eugene.javacore.practic.CONTROLLERS.PostController;
-import com.eugene.javacore.practic.ESSENCES.Post;
+import com.eugene.javacore.practic.controller.PostController;
+import com.eugene.javacore.practic.model.Post;
 
 import java.io.BufferedReader;
 import java.io.IOException;

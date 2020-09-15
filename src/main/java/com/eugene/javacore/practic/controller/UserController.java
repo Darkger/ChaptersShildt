@@ -1,15 +1,13 @@
-package com.eugene.javacore.practic.CONTROLLERS;
+package com.eugene.javacore.practic.controller;
 
-import com.eugene.javacore.practic.ESSENCES.Post;
-import com.eugene.javacore.practic.ESSENCES.User;
-import com.eugene.javacore.practic.REPOSITORYS.PostRepository;
-import com.eugene.javacore.practic.REPOSITORYS.UserRepository;
+import com.eugene.javacore.practic.model.User;
+import com.eugene.javacore.practic.repositoryIO.UserRepositoryImpl;
 
 import java.io.IOException;
 import java.util.List;
 
 public class UserController {
-    UserRepository userRepository = new UserRepository();
+    UserRepositoryImpl userRepository = new UserRepositoryImpl();
 
     public User save(User user) throws IOException {
 

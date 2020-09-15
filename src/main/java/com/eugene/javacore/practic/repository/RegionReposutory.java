@@ -1,11 +1,10 @@
-package com.eugene.javacore.practic.REPOSIMPLS;
+package com.eugene.javacore.practic.repository;
 
-import com.eugene.javacore.practic.ESSENCES.Region;
-import com.eugene.javacore.practic.Genericrepository;
+import com.eugene.javacore.practic.model.Region;
 
 import java.util.List;
 
-public interface RegionReposutoryImpl extends Genericrepository<Region,Long> {
+public interface RegionReposutory extends Genericrepository<Region,Long> {
 
     @Override
     Region getById(Long aLong);

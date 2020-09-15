@@ -1,7 +1,7 @@
-package com.eugene.javacore.practic.VIEWS;
+package com.eugene.javacore.practic.view;
 
-import com.eugene.javacore.practic.CONTROLLERS.RegionController;
-import com.eugene.javacore.practic.ESSENCES.Region;
+import com.eugene.javacore.practic.controller.RegionController;
+import com.eugene.javacore.practic.model.Region;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,14 +9,16 @@ import java.io.InputStreamReader;
 import java.util.List;
 
 public class RegionView {
+    RegionController regionController = new RegionController();
+
     public void viewDeleteById(String str) throws IOException {
-        RegionController regionController = new RegionController();
+
         regionController.deleteById(str);
         System.out.println("Регино с id=" + str + " удален из файла");
     }
 
     public void viewSave(Region region) throws IOException {
-        RegionController regionController = new RegionController();
+
         region = regionController.save(region);
         if (region != null)
             System.out.println("Регино " + "'" + region.getCharRegName() + "'" + " сохранен с id=" + region.getId());
@@ -24,7 +26,7 @@ public class RegionView {
     }
 
     public void viewGetAll() throws IOException {
-        RegionController regionController = new RegionController();
+
         List<Region> regionList = regionController.getAll();
         if (regionList.isEmpty())
             System.out.println("Файл пуст");
@@ -37,7 +39,7 @@ public class RegionView {
     }
 
     public void viewUpdate(Region region) throws IOException {
-        RegionController regionController = new RegionController();
+
         Region region1 = regionController.Update(region);
         if (region1 != null)
             System.out.println("Идентификатор id=" + region.getId() + " теперь присвоен региону '" + region.getCharRegName() + "'");
@@ -45,7 +47,7 @@ public class RegionView {
     }
 
     public void viewGetRegionById(String str) throws IOException {
-        RegionController regionController = new RegionController();
+
         Region region = regionController.getRegionById(str);
         if (region != null)
             System.out.println("Идентификатор id=" + region.getId() + "принадлежит Региону '" + region.getCharRegName());

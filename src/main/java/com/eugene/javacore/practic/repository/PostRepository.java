@@ -1,11 +1,10 @@
-package com.eugene.javacore.practic.REPOSIMPLS;
+package com.eugene.javacore.practic.repository;
 
-import com.eugene.javacore.practic.ESSENCES.Post;
-import com.eugene.javacore.practic.Genericrepository;
+import com.eugene.javacore.practic.model.Post;
 
 import java.util.List;
 
-public interface PostRepositoryImpl extends Genericrepository<Post,Long>  {
+public interface PostRepository extends Genericrepository<Post,Long>  {
     @Override
     Post getById(Long aLong);
 

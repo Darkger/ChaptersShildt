@@ -1,11 +1,8 @@
-package com.eugene.javacore.practic.REPOSITORYS;
+package com.eugene.javacore.practic.repositoryIO;
 
-import com.eugene.javacore.practic.ESSENCES.Post;
-import com.eugene.javacore.practic.REPOSIMPLS.PostRepositoryImpl;
+import com.eugene.javacore.practic.model.Post;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -13,11 +10,12 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PostRepository implements PostRepositoryImpl {
+public class PostRepositoryImpl implements com.eugene.javacore.practic.repository.PostRepository {
     private Path postsFile = Paths.get("C:\\javaFiles\\post.txt");
+
     @Override
     public Post getById(Long id) {
-        try{
+        try {
             List<String> listRegFile = Files.readAllLines(postsFile);
             if (!listRegFile.isEmpty()) {
                 for (String str : listRegFile) {
@@ -27,7 +25,7 @@ public class PostRepository implements PostRepositoryImpl {
                     }
                 }
             }
-            //System.out.println("id не найден");
+
             return null;
         } catch (IOException e) {
             System.out.println(e);
@@ -37,18 +35,18 @@ public class PostRepository implements PostRepositoryImpl {
 
     @Override
     public List<Post> getAll() {
-        try{
+        try {
             List<String> listRegFile = Files.readAllLines(postsFile);
             List<Post> listRegionObj = new ArrayList<>();
 
             if (!listRegFile.isEmpty()) {
                 for (String str : listRegFile) {
-                    String strArray[] = str.split(",",2);
+                    String strArray[] = str.split(",", 2);
                     listRegionObj.add(new Post(strArray[0], strArray[1]));
                 }
                 return listRegionObj;
             }
-            //System.out.println("Файл не содержит данных");
+
             return null;
         } catch (IOException e) {
             System.out.println(e);
@@ -59,20 +57,17 @@ public class PostRepository implements PostRepositoryImpl {
     @Override
     public Post save(Post post) {
         int flag = 0;
-        try{
-            if(!Files.exists(postsFile)){
+        try {
+            if (!Files.exists(postsFile)) {
                 Files.createFile(postsFile);
             }
+
             List<String> listReg = Files.readAllLines(postsFile);
-            ArrayList<String> listId = new ArrayList<>();
-            int maxValue = 1;
-            for (String str : listReg) {
-                String strArray[] = str.split(",");
-                listId.add(strArray[0]);
-                if (maxValue < Integer.parseInt(strArray[0])) {
-                    maxValue = Integer.parseInt(strArray[0]);
-                }
-            }
+            IOUtils.listIdAndMaxVal(listReg);
+
+            int maxValue = IOUtils.getMaxValue();
+            List<String> listId = IOUtils.getListId();
+
             switch (post.getId()) {
                 case "": {
                     for (String str : listReg) {
@@ -104,7 +99,7 @@ public class PostRepository implements PostRepositoryImpl {
             if (flag != 1) {
                 try {
                     Files.writeString(postsFile, post.getId() + "," + post.getContent() + "\n", StandardOpenOption.APPEND);
-                    // System.out.println("В файл записаны: id = " + region.getId() + " Регион = " + region.getCharRegName());
+
 
                 } catch (IOException e) {
                     System.out.println("ошибка записи в файл3");
@@ -141,7 +136,7 @@ public class PostRepository implements PostRepositoryImpl {
                     for (int i = 0; i < listId.size(); i++) {
                         try {
                             Files.writeString(postsFile, listId.get(i) + "," + listRegionCharName.get(i) + "\n", StandardOpenOption.APPEND);
-                            //   System.out.println("В файл записаны: id = " + listId.get(i) + " Регион = " + listRegionCharName.get(i));
+
                         } catch (IOException e) {
                             System.out.println("ошибка записи в файл3");
                         }
@@ -159,7 +154,7 @@ public class PostRepository implements PostRepositoryImpl {
 
     @Override
     public void deleteById(Long id) {
-        try{
+        try {
             List<String> listReg = Files.readAllLines(postsFile);
             ArrayList<Long> listId = new ArrayList<>();
 

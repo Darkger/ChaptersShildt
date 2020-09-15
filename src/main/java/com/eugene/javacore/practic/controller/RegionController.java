@@ -1,14 +1,15 @@
-package com.eugene.javacore.practic.CONTROLLERS;
+package com.eugene.javacore.practic.controller;
 
-import com.eugene.javacore.practic.ESSENCES.Region;
-import com.eugene.javacore.practic.REPOSITORYS.RegionRepository;
+import com.eugene.javacore.practic.model.Region;
+import com.eugene.javacore.practic.repositoryIO.RegionRepositoryImpl;
 
 import java.io.IOException;
 import java.util.List;
 
 public class RegionController {
+    RegionRepositoryImpl regionRepository = new RegionRepositoryImpl();
     public Region save(Region region) throws IOException {
-        RegionRepository regionRepository = new RegionRepository();
+
         region = regionRepository.save(region);
         if (region == null)
             return null;
@@ -17,12 +18,12 @@ public class RegionController {
     }
 
     public void deleteById(String str) throws IOException {
-        RegionRepository regionRepository = new RegionRepository();
+
         regionRepository.deleteById(Long.parseLong(str));
     }
 
     public Region getRegionById(String str) throws IOException {
-        RegionRepository regionRepository = new RegionRepository();
+
         Region region = regionRepository.getById(Long.parseLong(str));
         if (region == null)
             return null;
@@ -32,7 +33,7 @@ public class RegionController {
     }
 
     public Region Update(Region region) throws IOException {
-        RegionRepository regionRepository = new RegionRepository();
+
         region = regionRepository.update(region);
         if (region != null) {
             return region;
@@ -42,7 +43,7 @@ public class RegionController {
     }
 
     public List<Region> getAll() throws IOException {
-        RegionRepository regionRepository = new RegionRepository();
+
         List<Region> regionList = regionRepository.getAll();
         if (regionList.isEmpty())
             return null;

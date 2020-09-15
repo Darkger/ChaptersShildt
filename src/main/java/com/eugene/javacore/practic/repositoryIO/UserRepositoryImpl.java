@@ -1,13 +1,9 @@
-package com.eugene.javacore.practic.REPOSITORYS;
+package com.eugene.javacore.practic.repositoryIO;
 
-import com.eugene.javacore.practic.ESSENCES.Post;
-import com.eugene.javacore.practic.ESSENCES.Region;
-import com.eugene.javacore.practic.ESSENCES.User;
-import com.eugene.javacore.practic.REPOSIMPLS.UserRepositoryImpl;
+import com.eugene.javacore.practic.model.Post;
+import com.eugene.javacore.practic.model.User;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,10 +11,10 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserRepository implements UserRepositoryImpl {
+public class UserRepositoryImpl implements com.eugene.javacore.practic.repository.UserRepository {
     private Path userFile = Paths.get("C:\\javaFiles\\user.txt");
-    private PostRepository postRepository = new PostRepository();
-    private RegionRepository regionRepository = new RegionRepository();
+    private PostRepositoryImpl postRepository = new PostRepositoryImpl();
+    private RegionRepositoryImpl regionRepository = new RegionRepositoryImpl();
     @Override
     public User getById(Long id) {
         try{
@@ -91,15 +87,10 @@ public class UserRepository implements UserRepositoryImpl {
             }
             List<String> listReg = Files.readAllLines(userFile);
 
-            ArrayList<String> listId = new ArrayList<>();
-            int maxValue = 1;
-            for (String str : listReg) {
-                String strArray[] = str.split(",");
-                listId.add(strArray[0]);
-                if (maxValue < Integer.parseInt(strArray[0])) {
-                    maxValue = Integer.parseInt(strArray[0]);
-                }
-            }
+              IOUtils.listIdAndMaxVal(listReg);
+            int maxValue = IOUtils.getMaxValue();
+            List<String>  listId=IOUtils.getListId();
+
             switch (user.getId()) {
                 case "": {
                     for (String str : listReg) {
@@ -157,7 +148,7 @@ public class UserRepository implements UserRepositoryImpl {
             List<String> listRegFile = Files.readAllLines(userFile);
             List<String> listId = new ArrayList<>();
             List<String> listUserNotId = new ArrayList<>();
-            List<Post> listPost = new ArrayList<>();
+
             String postId="";
                 for(Post p:user.getPosts())
                 {
@@ -184,7 +175,7 @@ public class UserRepository implements UserRepositoryImpl {
                     for (int i = 0; i < listId.size(); i++) {
                         try {
                             Files.writeString(userFile, listId.get(i) + "," + listUserNotId.get(i) + "\n", StandardOpenOption.APPEND);
-                            //   System.out.println("В файл записаны: id = " + listId.get(i) + " Регион = " + listRegionCharName.get(i));
+
                         } catch (IOException e) {
                             System.out.println("ошибка записи в файл3");
                         }
@@ -215,7 +206,7 @@ public class UserRepository implements UserRepositoryImpl {
                 Files.createFile(userFile);
                 for (String str : listReg) {
                     try {
-                        System.out.println(str);
+
 
                         Files.writeString(userFile, str + "\n", StandardOpenOption.APPEND);
 

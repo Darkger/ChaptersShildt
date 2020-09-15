@@ -1,14 +1,14 @@
-package com.eugene.javacore.practic.REPOSITORYS;
+package com.eugene.javacore.practic.repositoryIO;
 
-import com.eugene.javacore.practic.ESSENCES.Region;
-import com.eugene.javacore.practic.REPOSIMPLS.RegionReposutoryImpl;
+import com.eugene.javacore.practic.model.Region;
+import com.eugene.javacore.practic.repository.RegionReposutory;
 
 import java.io.*;
 import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RegionRepository implements RegionReposutoryImpl {
+public class RegionRepositoryImpl implements RegionReposutory {
     private Path regionFile = Paths.get("C:\\javaFiles\\region.txt");
 
     public Region update(Region region) {
@@ -34,7 +34,7 @@ public class RegionRepository implements RegionReposutoryImpl {
                     for (int i = 0; i < listId.size(); i++) {
                         try {
                             Files.writeString(regionFile, listId.get(i) + "," + listRegionCharName.get(i) + "\n", StandardOpenOption.APPEND);
-                            //   System.out.println("В файл записаны: id = " + listId.get(i) + " Регион = " + listRegionCharName.get(i));
+
                         } catch (IOException e) {
                             System.out.println("ошибка записи в файл3");
                         }
@@ -61,7 +61,7 @@ public class RegionRepository implements RegionReposutoryImpl {
                 }
             }
         }
-        //System.out.println("id не найден");
+
         return null;
         } catch (IOException e) {
             System.out.println(e);
@@ -81,7 +81,7 @@ public class RegionRepository implements RegionReposutoryImpl {
             }
             return listRegionObj;
         }
-        //System.out.println("Файл не содержит данных");
+
         return null;
         } catch (IOException e) {
             System.out.println(e);
@@ -128,15 +128,11 @@ public class RegionRepository implements RegionReposutoryImpl {
         int flag = 0;
         try{
         List<String> listReg = Files.readAllLines(regionFile);
-        ArrayList<String> listId = new ArrayList<>();
-        int maxValue = 0;
-        for (String str : listReg) {
-            String strArray[] = str.split(",");
-            listId.add(strArray[0]);
-            if (maxValue < Integer.parseInt(strArray[0])) {
-                maxValue = Integer.parseInt(strArray[0]);
-            }
-        }if(region.getId()==null)
+        IOUtils.listIdAndMaxVal(listReg);
+        List<String> listId = IOUtils.getListId();
+        int maxValue = IOUtils.getMaxValue();
+
+        if(region.getId()==null)
             region.setId("");
         switch (region.getId()) {
             case "": {
@@ -169,7 +165,7 @@ public class RegionRepository implements RegionReposutoryImpl {
         if (flag != 1) {
             try {
                 Files.writeString(regionFile, region.getId() + "," + region.getCharRegName() + "\n", StandardOpenOption.APPEND);
-                // System.out.println("В файл записаны: id = " + region.getId() + " Регион = " + region.getCharRegName());
+
 
             } catch (IOException e) {
                 System.out.println("ошибка записи в файл3");

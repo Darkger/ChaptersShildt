@@ -1,4 +1,4 @@
-package com.eugene.javacore.practic;
+package com.eugene.javacore.practic.repository;
 
 import java.util.List;
 

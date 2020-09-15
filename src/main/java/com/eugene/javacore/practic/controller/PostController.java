@@ -1,14 +1,14 @@
-package com.eugene.javacore.practic.CONTROLLERS;
+package com.eugene.javacore.practic.controller;
 
 
-import com.eugene.javacore.practic.ESSENCES.Post;
-import com.eugene.javacore.practic.REPOSITORYS.PostRepository;
+import com.eugene.javacore.practic.model.Post;
+import com.eugene.javacore.practic.repositoryIO.PostRepositoryImpl;
 
 import java.io.IOException;
 import java.util.List;
 
 public class PostController {
-    PostRepository regionRepository = new PostRepository();
+    PostRepositoryImpl regionRepository = new PostRepositoryImpl();
 
     public Post save(Post post) throws IOException {
 

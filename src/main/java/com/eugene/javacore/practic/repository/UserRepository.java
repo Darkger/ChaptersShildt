@@ -1,11 +1,10 @@
-package com.eugene.javacore.practic.REPOSIMPLS;
+package com.eugene.javacore.practic.repository;
 
-import com.eugene.javacore.practic.ESSENCES.User;
-import com.eugene.javacore.practic.Genericrepository;
+import com.eugene.javacore.practic.model.User;
 
 import java.util.List;
 
-public interface UserRepositoryImpl extends Genericrepository<User,Long> {
+public interface UserRepository extends Genericrepository<User,Long> {
     @Override
     User getById(Long aLong);
 

@@ -1,4 +1,4 @@
-package com.eugene.javacore.practic.ESSENCES;
+package com.eugene.javacore.practic.model;
 
 public class Region {
     private String id;
