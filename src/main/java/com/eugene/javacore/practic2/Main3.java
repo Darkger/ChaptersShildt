@@ -1,6 +1,7 @@
 package com.eugene.javacore.practic2;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
@@ -12,6 +13,7 @@ class FizzBuzz {
     Semaphore semaphore4 = new Semaphore(0);
     int size;
     ArrayList<String> list = new ArrayList<>();
+
     public FizzBuzz(int n) {
 
         size = n;
@@ -22,82 +24,147 @@ class FizzBuzz {
 
     }
 
-    public void fizz() {
+    public void fizz(ThreadFizz fizz) {
         try {
             semaphore1.acquire();
         } catch (InterruptedException e) {
         }
-        System.out.println("Fizz:");
-        for (int i = 1; i <= size; ++i) {
-            if (i % 3 == 0) {
-                list.set(i - 1, "fizz");
-                System.out.print("fizz");
-            } else System.out.print(i);
-            if (i < (list.size())) {
-                System.out.print(",");
-            }
-        }
-
-
-        System.out.println();
+        fizz.run();
         semaphore2.release();
     }
 
-    public void buzz() {
+    public void buzz(ThreadBuzz buzz) {
         try {
             semaphore2.acquire();
         } catch (InterruptedException e) {
         }
-        System.out.println("Buzz:");
-        for (int i = 1; i <= size; ++i) {
-            if (i % 5 == 0) {
-                list.set(i - 1, "buzz");
-                System.out.print("buzz");
-            } else System.out.print(i);
-            if (i < (list.size())) {
-                System.out.print(",");
-            }
-        }
-
-        System.out.println();
+        buzz.run();
         semaphore3.release();
     }
 
-    public void fizzbuzz() {
+    public void fizzbuzz(ThreadFizzBuzz fizzBuzz) {
         try {
             semaphore3.acquire();
         } catch (InterruptedException e) {
         }
-        for (int i = 1; i <= size; ++i) {
-            if (i % 5 == 0 && i % 3 == 0) {
-                list.set(i - 1, "fizzbuzz");
-            }
-
-        }
-        System.out.println("FizzBuzz:");
-        for (int i = 0; i < list.size(); i++) {
-            System.out.print(list.get(i));
-            if (i < (list.size() - 1)) {
-                System.out.print(",");
-            }
-        }
-
-        System.out.println();
+        fizzBuzz.run();
         semaphore4.release();
 
     }
 
 
-    public void number() {
-
+    public void number(ThreadNuber nuber) {
         try {
             semaphore4.acquire();
         } catch (InterruptedException e) {
         }
+        nuber.run();
+
+
+    }
+}
+
+class ThreadBuzz implements Runnable {
+    FizzBuzz fizzBuzz;
+
+
+    ThreadBuzz(FizzBuzz fz) {
+        fizzBuzz = fz;
+
+    }
+
+    public void run() {
+        System.out.println("Buzz:");
+        for (int i = 1; i <= fizzBuzz.size; ++i) {
+            if (i % 5 == 0) {
+                fizzBuzz.list.set(i - 1, "buzz");
+                System.out.print("buzz");
+            } else System.out.print(i);
+            if (i < (fizzBuzz.list.size())) {
+                System.out.print(",");
+            }
+        }
+
+        System.out.println();
+
+    }
+}
+
+class ThreadFizz implements Runnable {
+    FizzBuzz fizzBuzz;
+    int size;
+
+    ThreadFizz(FizzBuzz fz) {
+        fizzBuzz = fz;
+        size = fz.size;
+    }
+
+    public void run() {
+        System.out.println("Fizz:");
+        for (int i = 1; i <= size; ++i) {
+            if (i % 3 == 0) {
+                fizzBuzz.list.set(i - 1, "fizz");
+                System.out.print("fizz");
+            } else System.out.print(i);
+            if (i < (fizzBuzz.list.size())) {
+                System.out.print(",");
+            }
+        }
+
+
+        System.out.println();
+
+    }
+}
+
+class ThreadFizzBuzz implements Runnable {
+    FizzBuzz fizzBuzz;
+    int size;
+
+    ThreadFizzBuzz(FizzBuzz fz) {
+        fizzBuzz = fz;
+        size = fz.size;
+
+
+    }
+
+    public void run() {
+        for (int i = 1; i <= size; ++i) {
+            if (i % 5 == 0 && i % 3 == 0) {
+                fizzBuzz.list.set(i - 1, "fizzbuzz");
+            }
+
+        }
+        System.out.println("FizzBuzz:");
+        for (int i = 0; i < fizzBuzz.list.size(); i++) {
+            System.out.print(fizzBuzz.list.get(i));
+            if (i < (fizzBuzz.list.size() - 1)) {
+                System.out.print(",");
+            }
+        }
+
+        System.out.println();
+
+    }
+}
+
+class ThreadNuber implements Runnable {
+
+    int size;
+    FizzBuzz fizzBuzz;
+
+    ThreadNuber(FizzBuzz fz) {
+        fizzBuzz = fz;
+        size = fz.size;
+
+    }
+
+    public void run() {
+
         ArrayList<String> list2 = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            if (list.get(i) != "fizz" && list.get(i) != "buzz" && list.get(i) != "fizzbuzz") {
-                list2.add(list.get(i));
+            if (fizzBuzz.list.get(i) != "fizz" && fizzBuzz.list.get(i) != "buzz" && fizzBuzz.list.get(i) != "fizzbuzz") {
+                list2.add(fizzBuzz.list.get(i));
 
             }
         }
@@ -108,66 +175,7 @@ class FizzBuzz {
                 System.out.print(",");
             }
         }
-    }
-}
 
-class ThreadBuzz implements Runnable {
-    FizzBuzz fizzBuzz;
-
-
-    ThreadBuzz(FizzBuzz fz) {
-        fizzBuzz = fz;
-        new Thread(this).start();
-    }
-
-    public void run() {
-        fizzBuzz.buzz();
-
-    }
-}
-
-class ThreadFizz implements Runnable {
-    FizzBuzz fizzBuzz;
-
-    ThreadFizz(FizzBuzz fz) {
-        fizzBuzz = fz;
-
-        new Thread(this).start();
-    }
-
-    public void run() {
-        fizzBuzz.fizz();
-
-    }
-}
-
-class ThreadFizzBuzz implements Runnable {
-    FizzBuzz fizzBuzz;
-
-    ThreadFizzBuzz(FizzBuzz bz) {
-        fizzBuzz = bz;
-
-        new Thread(this).start();
-    }
-
-    public void run() {
-        fizzBuzz.fizzbuzz();
-    }
-}
-
-class ThreadNuber implements Runnable {
-
-    FizzBuzz fizzBuzz;
-
-    ThreadNuber(FizzBuzz fz) {
-        fizzBuzz = fz;
-
-        new Thread(this).start();
-    }
-
-    public void run() {
-
-        fizzBuzz.number();
     }
 }
 
@@ -175,11 +183,10 @@ public class Main3 {
 
     public static void main(String[] args) {
         FizzBuzz fz = new FizzBuzz(15);
-
-        new ThreadFizz(fz);
-        new ThreadBuzz(fz);
-        new ThreadFizzBuzz(fz);
-        new ThreadNuber(fz);
+        fz.fizz(new ThreadFizz(fz));
+        fz.buzz(new ThreadBuzz(fz));
+        fz.fizzbuzz(new ThreadFizzBuzz(fz));
+        fz.number(new ThreadNuber(fz));
 
     }
 }
