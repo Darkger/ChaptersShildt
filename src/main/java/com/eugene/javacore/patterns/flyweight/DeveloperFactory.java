@@ -15,10 +15,11 @@ public class DeveloperFactory {
                     developer = new JavaDeveloper();
                 case "C++":
                     System.out.println("Hiring C++ develoer...");
+                    developer = new CppDeveloper();
 
-                    developers.put(specilty, developer);
 
             }
+            developers.put(specilty, developer);
         }return developer;
 
     }

@@ -1,9 +1,11 @@
 package com.eugene.javacore.patterns.bridge;
 
 public abstract class Program {
-    protected  Developer developer;
-    protected Program (Developer developer)
-    { this.developer=developer;
+    protected Developer developer;
+
+    protected Program(Developer developer) {
+        this.developer = developer;
     }
-    public abstract  void developerProgram();
+
+    public abstract void developerProgram();
 }
