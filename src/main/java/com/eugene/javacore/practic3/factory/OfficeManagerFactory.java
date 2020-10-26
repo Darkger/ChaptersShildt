@@ -5,4 +5,5 @@ public class OfficeManagerFactory implements ManagerFactory {
     public Manager creatManager() {
         return new OfficeManager();
     }
+
 }

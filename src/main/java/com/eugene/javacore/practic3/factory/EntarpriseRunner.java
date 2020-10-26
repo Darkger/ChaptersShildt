@@ -6,7 +6,6 @@ public class EntarpriseRunner  {
         ManagerFactory managerFactory1= creatManagerFactory("Sales");
         managerFactory.creatManager().sellGoods();
         managerFactory1.creatManager().sellGoods();
-
     }
     public static ManagerFactory creatManagerFactory(String str){
         if(str.equalsIgnoreCase("Office"))
